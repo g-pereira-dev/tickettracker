@@ -1,27 +1,25 @@
 package com.gpereira.tickettracker.service;
 
 import com.gpereira.tickettracker.model.Ticket;
+import com.gpereira.tickettracker.repository.TicketRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class TicketService {
 
-    private List<Ticket> tickets = new ArrayList<>();
+    private final TicketRepository ticketRepository;
 
-    public TicketService() {
-
-        tickets.add(new Ticket(1L, "VPN connection issue", "User cannot connect from home", "OPEN"));
-        tickets.add(new Ticket(2L, "Blue screen on HR laptop", "System crashes after login", "IN_PROGRESS"));
+    public TicketService(TicketRepository ticketRepository) {
+        this.ticketRepository = ticketRepository;
     }
 
     public List<Ticket> getAllTickets() {
-        return tickets;
+        return ticketRepository.findAll();
     }
 
     public void addTicket(Ticket ticket) {
-        tickets.add(ticket);
+        ticketRepository.save(ticket);
     }
 }

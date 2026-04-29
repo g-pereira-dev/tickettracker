@@ -1,10 +1,18 @@
 package com.gpereira.tickettracker.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "tickets")
 public class Ticket {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
     private String status;
+
+    public Ticket() {}
 
     public Ticket(Long id, String title, String description, String status) {
         this.id = id;
