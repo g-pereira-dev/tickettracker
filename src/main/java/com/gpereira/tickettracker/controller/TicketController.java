@@ -25,4 +25,15 @@ public class TicketController {
         ticketService.addTicket(ticket);
         return "Ticket created successfully!";
     }
+
+    @PutMapping("/{id}")
+    public Ticket updateTicket(@PathVariable Long id, @RequestBody Ticket ticket) {
+        return ticketService.updateTicket(id, ticket);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteTicket(@PathVariable Long id) {
+        ticketService.deleteTicket(id);
+        return "Ticket deleted successfully!";
+    }
 }
