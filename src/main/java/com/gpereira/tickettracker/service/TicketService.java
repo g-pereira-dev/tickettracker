@@ -22,7 +22,12 @@ public class TicketService {
     public void addTicket(Ticket ticket) {
         ticketRepository.save(ticket);
     }
-
+    
+    public Ticket getTicketById(Long id) {
+    return ticketRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Ticket not found with id " + id));
+    }
+    
     public Ticket updateTicket(Long id, Ticket updatedTicket) {
         return ticketRepository.findById(id)
                 .map(ticket -> {
